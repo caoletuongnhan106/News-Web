@@ -1,33 +1,36 @@
 const CommentRepository = require(`../comments/commentRepository`);
 
 class CommentService {
-	async create(pk, data) {
-		return await CommentRepository.create(pk, {
-			ParentPostID: data.ParentPostID,
-			CommentContent: data.CommentContent,
-			ParentCommentId: data.ParentCommentId,
-		});
-	}
+    async create(pk, data) {
+        return await CommentRepository.create(pk, {
+            ParentPostID: data.ParentPostID,
+            CommentContent: data.CommentContent,
+            ParentCommentId: data.ParentCommentId,
+            ContradictionType: 'No-Contradiction',
+            ContradictionConfidence: 0,
+            ContradictionReason: ''
+        });
+    }
 
-	async updateByID(pk, CommentId, data) {
-		return await CommentRepository.updateByID(pk, CommentId, {
-			CommentContent: data.CommentContent,
-		});
-	}
+    async updateByID(pk, CommentId, data) {
+        return await CommentRepository.updateByID(pk, CommentId, {
+            CommentContent: data.CommentContent,
+        });
+    }
 
-	async deleteByID(pk, CommentId) {
-		return await CommentRepository.deleteByID(pk, CommentId);
-	}
+    async deleteByID(pk, CommentId) {
+        return await CommentRepository.deleteByID(pk, CommentId);
+    }
 
-	async getComment(postID) {
-		const data = await CommentRepository.getComment(postID);
+    async getComment(postID) {
+        const data = await CommentRepository.getComment(postID);
 
-		if (data) {
-			return data.Items;
-		}
+        if (data) {
+            return data.Items;
+        }
 
-		return data;
-	}
+        return data;
+    }
 }
 
 module.exports = new CommentService();

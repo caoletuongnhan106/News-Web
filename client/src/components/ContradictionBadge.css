@@ -1,0 +1,17 @@
+.contradiction-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 8px;
+    cursor: help;
+    white-space: nowrap;
+}
+
+.contradiction-badge:hover {
+    opacity: 0.85;
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}

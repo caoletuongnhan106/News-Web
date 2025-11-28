@@ -15,9 +15,17 @@ class AuthController {
   async signup(req, res) {
     try {
       const getEmail = await userRepository.findByEmail(req.body.UserEmail);
-      if (getEmail.Count > 0) {
+      console.log('=== SIGNUP DEBUG ===');
+      console.log('Email check:', req.body.UserEmail);
+      console.log('findByEmail result:', JSON.stringify(getEmail, null, 2));
+      console.log('Items count:', getEmail.Items ? getEmail.Items.length : 0);
+      
+      if (getEmail.Items && getEmail.Items.length > 0) {
+        console.log('Email exists - rejecting');
         return res.status(400).json({ message: "Email already exist" });
       }
+      
+      console.log('Email not found - creating new account');
       const data = await AuthService.signup(req.body);
       const accessToken = jwt.sign(
         {
@@ -43,7 +51,7 @@ class AuthController {
         accessToken,
       });
     } catch (err) {
-      console.error(err);
+      console.error('SIGNUP ERROR:', err);
       res.status(500).json({ err: "Something went wrong" });
     }
   }

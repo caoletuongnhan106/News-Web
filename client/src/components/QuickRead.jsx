@@ -8,8 +8,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 const Quickread = ({data}) => {
-	const posts = data.slice(data.length - 7, data.length - 1).reverse();
-
+const posts = Array.isArray(data) ? data.slice(data.length - 7, data.length - 1).reverse() : [];
 	return (
 		<section className="quick-read section">
 			<div className="container">
