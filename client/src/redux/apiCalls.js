@@ -129,8 +129,7 @@ export const getTags = async (dispatch) => {
   dispatch(getTagstart());
   try {
     const res = await publicRequest.get("/tag");
-    dispatch(getTagsuccess(res.data));
-  } catch (err) {
+dispatch(getTagsuccess(res.data.Items || res.data || []));  } catch (err) {
     dispatch(getTagFailure());
   }
 };
@@ -140,8 +139,7 @@ export const getCategories = async (dispatch) => {
   dispatch(getCategorystart());
   try {
     const res = await publicRequest.get("/category");
-    dispatch(getCategorysuccess(res.data));
-  } catch (err) {
+dispatch(getCategorysuccess(res.data.Items || res.data || []));  } catch (err) {
     dispatch(getCategoryFailure());
   }
 };
@@ -150,7 +148,7 @@ export const getPosts = async (dispatch) => {
   dispatch(getPoststart());
   try {
     const res = await publicRequest.get("/post");
-    dispatch(getPostsuccess(res.data));
+dispatch(getPostsuccess(res.data.Items || res.data || []));
   } catch (err) {
     dispatch(getPostFailure());
   }
@@ -161,7 +159,7 @@ export const getReadingList = async (dispatch) => {
   dispatch(getReadingPoststart());
   try {
     const res = await userRequest.get("/reading_list");
-    dispatch(getReadingPostsuccess(res.data));
+dispatch(getReadingPostsuccess(res.data.Items || res.data || []));
   } catch (err) {
     dispatch(getReadingPostFailure());
   }
