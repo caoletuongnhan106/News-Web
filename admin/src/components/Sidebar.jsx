@@ -12,7 +12,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar" id="mySidebar">
       <div className="sidebar__top">
-        <span className="sidebar__logo">NVTNews</span>
+        <span className="sidebar__logo"> Daily News</span>
         <img
           className="d-none"
           id="logo"
